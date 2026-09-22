@@ -1,30 +1,34 @@
+import { SimpleGrid, Stack, Text, Title } from "@mantine/core";
+
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { journey } from "@/data/journey";
 
 export function JourneySection() {
   return (
-    <section className="border-t border-neutral-200 py-20 sm:py-24" id="journey">
+    <section className="section-shell" id="journey">
       <Container>
-        <SectionHeading
-          description="A short timeline helps visitors understand your growth without turning the portfolio into a full CV."
-          eyebrow="Journey"
-          title="How my development journey has evolved."
-        />
+        <Stack gap={48}>
+          <SectionHeading
+            eyebrow="Journey"
+            title="Show progression, not every event."
+            description="Choose milestones that explain how your skills and responsibilities have grown."
+          />
 
-        <ol className="mt-10 border-l border-neutral-300 pl-6">
-          {journey.map((item) => (
-            <li className="relative pb-10 last:pb-0" key={`${item.year}-${item.title}`}>
-              <span
-                aria-hidden="true"
-                className="absolute -left-[29px] top-2 size-3 rounded-full border-2 border-[#f7f7f5] bg-neutral-950"
-              />
-              <p className="text-sm font-semibold text-neutral-500">{item.year}</p>
-              <h3 className="mt-1 text-xl font-semibold">{item.title}</h3>
-              <p className="mt-2 max-w-2xl leading-7 text-neutral-600">{item.description}</p>
-            </li>
-          ))}
-        </ol>
+          <SimpleGrid cols={{ base: 1, md: 3 }} spacing="lg">
+            {journey.map((item) => (
+              <div className="journey-card" key={`${item.year}-${item.title}`}>
+                <Stack gap="sm">
+                  <Text className="journey-year">{item.year}</Text>
+                  <Title className="journey-title" order={3} size="h4">
+                    {item.title}
+                  </Title>
+                  <Text className="body-copy">{item.description}</Text>
+                </Stack>
+              </div>
+            ))}
+          </SimpleGrid>
+        </Stack>
       </Container>
     </section>
   );

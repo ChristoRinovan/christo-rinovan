@@ -1,21 +1,9 @@
-import type { ReactNode } from "react";
+import { Badge as MantineBadge } from "@mantine/core";
 
-import { cn } from "@/lib/utils/cn";
-
-type BadgeProps = {
-  children: ReactNode;
-  className?: string;
-};
-
-export function Badge({ children, className }: BadgeProps) {
+export function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span
-      className={cn(
-        "inline-flex rounded-full border border-neutral-200 bg-white px-3 py-1 text-sm text-neutral-700",
-        className,
-      )}
-    >
+    <MantineBadge className="portfolio-badge" radius="xl" variant="light">
       {children}
-    </span>
+    </MantineBadge>
   );
 }

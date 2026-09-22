@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Group,  SimpleGrid, Stack, Text, Title } from "@mantine/core";
+import { IconArrowLeft, IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
 import { notFound } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { projects } from "@/data/projects";
+import { BulletList } from "@/components/ui/bullet-list";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -43,78 +46,84 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <article className="py-16 sm:py-24">
+    <article className="project-detail">
       <Container>
-        <Link className="text-sm font-medium text-neutral-600 hover:text-neutral-950" href="/#projects">
-          ← Back to projects
-        </Link>
+        <Stack gap={48}>
+          <Stack gap="xl" maw={900}>
+            <div>
+              <Button href="/#projects" leftSection={<IconArrowLeft aria-hidden size={18} stroke={1.8} />} variant="secondary">
+                Back to projects
+              </Button>
+            </div>
 
-        <header className="mt-10 max-w-4xl">
-          <div className="flex flex-wrap gap-x-3 gap-y-2 text-sm text-neutral-500">
-            <span>{project.year}</span>
-            <span aria-hidden="true">•</span>
-            <span>{project.role}</span>
-          </div>
+            <Group gap="sm">
+              <Text className="project-meta">{project.year}</Text>
+              <Text className="muted-text" aria-hidden="true">
+                •
+              </Text>
+              <Text className="project-meta">{project.role}</Text>
+            </Group>
 
-          <h1 className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl">
-            {project.title}
-          </h1>
+            <Title className="project-detail-title" order={1}>
+              {project.title}
+            </Title>
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-neutral-600">
-            {project.description}
-          </p>
+            <Text className="project-detail-copy">{project.description}</Text>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {project.technologies.map((technology) => (
-              <Badge key={technology}>{technology}</Badge>
-            ))}
-          </div>
+            <Group gap="xs">
+              {project.technologies.map((technology) => (
+                <Badge key={technology}>{technology}</Badge>
+              ))}
+            </Group>
 
-          <div className="mt-8 flex flex-wrap gap-4 text-sm font-semibold">
-            {project.liveUrl ? (
-              <Link className="underline underline-offset-4" href={project.liveUrl}>
-                Live project ↗
-              </Link>
-            ) : null}
-            {project.repositoryUrl ? (
-              <Link className="underline underline-offset-4" href={project.repositoryUrl}>
-                Repository ↗
-              </Link>
-            ) : null}
-          </div>
-        </header>
+            <Group gap="sm">
+              {project.liveUrl ? (
+                <Button href={project.liveUrl} rightSection={<IconExternalLink aria-hidden size={18} stroke={1.8} />}>
+                  Live project
+                </Button>
+              ) : null}
+              {project.repositoryUrl ? (
+                <Button href={project.repositoryUrl} leftSection={<IconBrandGithub aria-hidden size={18} stroke={1.8} />} variant="secondary">
+                  Repository
+                </Button>
+              ) : null}
+            </Group>
+          </Stack>
 
-        <div className="mt-12 aspect-[16/8] rounded-3xl border border-neutral-200 bg-neutral-100 p-8">
-          <p className="text-sm text-neutral-500">Large project screenshot / visual placeholder</p>
-        </div>
+          <div className="project-visual">Large project screenshot / visual placeholder</div>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-[220px_1fr]">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            Challenge
-          </h2>
-          <p className="max-w-3xl text-lg leading-8 text-neutral-700">
-            {project.caseStudy.challenge}
-          </p>
+          <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl">
+            <section className="case-study-panel">
+              <Stack gap="md">
+                <Text className="case-study-label">Challenge</Text>
+                <Title className="case-study-title" order={2} size="h3">
+                  What needed to be solved?
+                </Title>
+                <Text className="body-copy">{project.caseStudy.challenge}</Text>
+              </Stack>
+            </section>
 
-          <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            Solution
-          </h2>
-          <p className="max-w-3xl text-lg leading-8 text-neutral-700">
-            {project.caseStudy.solution}
-          </p>
+            <section className="case-study-panel">
+              <Stack gap="md">
+                <Text className="case-study-label">Solution</Text>
+                <Title className="case-study-title" order={2} size="h3">
+                  How did you approach it?
+                </Title>
+                <Text className="body-copy">{project.caseStudy.solution}</Text>
+              </Stack>
+            </section>
+          </SimpleGrid>
 
-          <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            Highlights
-          </h2>
-          <ul className="max-w-3xl space-y-3 text-lg leading-8 text-neutral-700">
-            {project.caseStudy.highlights.map((highlight) => (
-              <li className="flex gap-3" key={highlight}>
-                <span aria-hidden="true">•</span>
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <section className="case-study-panel">
+            <Stack gap="md">
+              <Text className="case-study-label">Highlights</Text>
+              <Title className="case-study-title" order={2} size="h3">
+                What is worth remembering?
+              </Title>
+              <BulletList className="highlight-list" items={project.caseStudy.highlights} />
+            </Stack>
+          </section>
+        </Stack>
       </Container>
     </article>
   );

@@ -1,5 +1,5 @@
-type ClassNameValue = string | false | null | undefined;
+type ClassValue = string | false | null | undefined;
 
-export function cn(...values: ClassNameValue[]) {
-  return values.filter(Boolean).join(" ");
+export function cn(...classes: ClassValue[]) {
+  return classes.filter(Boolean).join(" ");
 }

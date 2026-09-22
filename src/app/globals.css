@@ -1,8 +1,22 @@
-@import "tailwindcss";
-
 :root {
-  --background: #f7f7f5;
-  --foreground: #171717;
+  --page-bg: #f5f2ea;
+  --surface: #ffffff;
+  --surface-soft: #ece8dd;
+  --surface-accent: #ebe9ff;
+  --text: #1b1f1c;
+  --muted: #66706a;
+  --border: #d7d2c8;
+  --accent: #6558f5;
+  --accent-hover: #5144db;
+  --accent-contrast: #ffffff;
+  --success: #2f8f62;
+  --danger: #c3423f;
+  --focus-ring: color-mix(in srgb, var(--accent) 28%, transparent);
+  --header-bg: rgba(245, 242, 234, 0.88);
+  --shadow: 0 18px 45px rgba(27, 31, 28, 0.08);
+  --radius-sm: 0.75rem;
+  --radius-md: 1.25rem;
+  --radius-lg: 2rem;
 }
 
 * {
@@ -11,12 +25,13 @@
 
 html {
   scroll-behavior: smooth;
+  background: var(--page-bg);
 }
 
 body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--page-bg);
+  color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
 }
@@ -34,6 +49,405 @@ select {
 }
 
 ::selection {
-  background: var(--foreground);
-  color: var(--background);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.site-container {
+  width: 100%;
+  padding-inline: 1rem;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+  background: var(--header-bg);
+  backdrop-filter: blur(16px);
+}
+
+.brand-link {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.nav-link,
+.footer-link {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: color 160ms ease;
+}
+
+.nav-link:hover,
+.footer-link:hover,
+.inline-link:hover {
+  color: var(--accent);
+}
+
+.mobile-drawer-content,
+.mobile-drawer-header,
+.mobile-drawer-body {
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+.mobile-drawer-overlay {
+  background: rgba(27, 31, 28, 0.32);
+}
+
+.mobile-nav-link {
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-weight: 700;
+}
+
+.mobile-nav-link:hover {
+  background: var(--surface-accent);
+  color: var(--accent);
+}
+
+.hero-section {
+  display: flex;
+  min-height: calc(100svh - 4.5rem);
+  align-items: center;
+  padding-block: 5rem;
+}
+
+.hero-eyebrow,
+.section-kicker {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  max-width: 62rem;
+  color: var(--text);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.065em;
+  line-height: 0.95;
+}
+
+.hero-copy {
+  max-width: 43rem;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.75;
+}
+
+.section-shell {
+  padding-block: 6rem;
+  scroll-margin-top: 5rem;
+}
+
+.section-shell-soft {
+  background: var(--surface-soft);
+}
+
+.section-title {
+  color: var(--text);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.section-description,
+.body-copy,
+.muted-text {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.body-copy {
+  font-size: 1.05rem;
+}
+
+.surface,
+.project-card,
+.skill-card,
+.journey-card,
+.cta-card,
+.project-visual,
+.case-study-panel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.project-card,
+.skill-card,
+.journey-card,
+.cta-card,
+.case-study-panel {
+  border-radius: var(--radius-md);
+}
+
+.project-card {
+  height: 100%;
+  padding: 1.4rem;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  box-shadow: var(--shadow);
+}
+
+.project-card-title {
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.project-card-copy {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.project-placeholder,
+.project-visual {
+  display: grid;
+  min-height: 14rem;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--surface-accent);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.portfolio-badge {
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+  background: var(--surface-accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.portfolio-button-primary {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 800;
+}
+
+.portfolio-button-primary:hover {
+  border-color: var(--accent-hover);
+  background: var(--accent-hover);
+}
+
+.portfolio-button-secondary {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.portfolio-button-secondary:hover {
+  border-color: var(--accent);
+  background: var(--surface-accent);
+  color: var(--accent);
+}
+
+.skill-card,
+.journey-card,
+.case-study-panel {
+  padding: 1.5rem;
+}
+
+.skill-category,
+.journey-title,
+.case-study-title {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.journey-year,
+.project-meta,
+.case-study-label {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cta-card {
+  padding: clamp(1.75rem, 5vw, 4rem);
+  background: var(--surface-accent);
+}
+
+.inline-link {
+  color: var(--text);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25rem;
+}
+
+.footer-shell {
+  border-top: 1px solid var(--border);
+  padding-block: 2rem;
+}
+
+.not-found-shell {
+  display: flex;
+  min-height: 65vh;
+  align-items: center;
+  padding-block: 5rem;
+}
+
+.not-found-code {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.project-detail {
+  padding-block: 5rem 7rem;
+}
+
+.project-detail-title {
+  color: var(--text);
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  line-height: 0.96;
+}
+
+.project-detail-copy {
+  max-width: 48rem;
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.highlight-list {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+@media (min-width: 48em) {
+  .site-container {
+    padding-inline: 1.5rem;
+  }
+
+  .section-shell {
+    padding-block: 7.5rem;
+  }
+}
+
+@media (min-width: 75em) {
+  .site-container {
+    padding-inline: 2rem;
+  }
+}
+
+.contact-title {
+  color: var(--text);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.contact-form {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* Mantine static selectors: keep form visuals centralized in globals.css. */
+.mantine-InputWrapper-label {
+  margin-bottom: 0.4rem;
+  color: var(--text);
+  font-weight: 750;
+}
+
+.mantine-InputWrapper-required {
+  color: var(--accent);
+}
+
+.mantine-InputWrapper-error {
+  color: var(--danger);
+  font-weight: 650;
+}
+
+.mantine-TextInput-input,
+.mantine-Textarea-input {
+  border-color: var(--border);
+  background: var(--page-bg);
+  color: var(--text);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.mantine-TextInput-input::placeholder,
+.mantine-Textarea-input::placeholder {
+  color: color-mix(in srgb, var(--muted) 72%, transparent);
+}
+
+.mantine-TextInput-input:focus,
+.mantine-Textarea-input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.form-helper {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.social-icon {
+  border: 1px solid transparent;
+  color: var(--muted);
+}
+
+.social-icon:hover {
+  border-color: var(--border);
+  background: var(--surface-accent);
+  color: var(--accent);
+}
+
+/* @mantine/notifications appearance, still driven by the palette above. */
+.portfolio-notification {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.portfolio-notification-icon {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.portfolio-notification-title {
+  color: var(--text);
+  font-weight: 800;
+}
+
+.portfolio-notification-description {
+  color: var(--muted);
+}
+
+.portfolio-notification-close {
+  color: var(--muted);
+}
+
+.portfolio-notification-close:hover {
+  background: var(--surface-accent);
+  color: var(--accent);
 }

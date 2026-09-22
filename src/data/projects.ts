@@ -11,8 +11,8 @@ export const projects: Project[] = [
       "Use this space for a concise project overview: who it was for, the main problem, and the result you delivered.",
     year: "2026",
     role: "Fullstack Developer",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
-    repositoryUrl: "https://github.com/your-username/project-one",
+    technologies: ["Next.js", "TypeScript", "Mantine"],
+    repositoryUrl: "https://github.com/ChristoRinovan/project-one",
     liveUrl: "https://example.com",
     featured: true,
     caseStudy: {
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     year: "2025",
     role: "Frontend Developer",
     technologies: ["React", "TypeScript", "REST API"],
-    repositoryUrl: "https://github.com/your-username/project-two",
+    repositoryUrl: "https://github.com/ChristoRinovan/project-two",
     featured: true,
     caseStudy: {
       challenge:

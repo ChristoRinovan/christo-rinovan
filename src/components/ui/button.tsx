@@ -1,5 +1,7 @@
+"use client"
+import type { MouseEventHandler, ReactNode } from "react";
+import { Button as MantineButton } from "@mantine/core";
 import Link from "next/link";
-import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils/cn";
 
@@ -8,6 +10,13 @@ type ButtonProps = {
   href?: string;
   variant?: "primary" | "secondary";
   className?: string;
+  leftSection?: ReactNode;
+  rightSection?: ReactNode;
+  type?: "button" | "submit" | "reset";
+  loading?: boolean;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 export function Button({
@@ -15,26 +24,68 @@ export function Button({
   href,
   variant = "primary",
   className,
+  leftSection,
+  rightSection,
+  type = "button",
+  loading,
+  disabled,
+  fullWidth,
+  onClick,
 }: ButtonProps) {
-  const styles = cn(
-    "inline-flex min-h-11 items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium transition",
+  const classes = cn(
     variant === "primary"
-      ? "bg-neutral-950 text-white hover:bg-neutral-800"
-      : "border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-100",
+      ? "portfolio-button-primary"
+      : "portfolio-button-secondary",
     className,
   );
 
-  if (href) {
+  if (href?.startsWith("/")) {
     return (
-      <Link className={styles} href={href}>
+      <MantineButton
+        className={classes}
+        component={Link}
+        href={href}
+        leftSection={leftSection}
+        radius="xl"
+        rightSection={rightSection}
+      >
         {children}
-      </Link>
+      </MantineButton>
+    );
+  }
+
+  if (href) {
+    const isExternal = href.startsWith("http");
+
+    return (
+      <MantineButton
+        className={classes}
+        component="a"
+        href={href}
+        leftSection={leftSection}
+        radius="xl"
+        rel={isExternal ? "noreferrer" : undefined}
+        rightSection={rightSection}
+        target={isExternal ? "_blank" : undefined}
+      >
+        {children}
+      </MantineButton>
     );
   }
 
   return (
-    <button className={styles} type="button">
+    <MantineButton
+      className={classes}
+      disabled={disabled}
+      fullWidth={fullWidth}
+      leftSection={leftSection}
+      loading={loading}
+      onClick={onClick}
+      radius="xl"
+      rightSection={rightSection}
+      type={type}
+    >
       {children}
-    </button>
+    </MantineButton>
   );
 }

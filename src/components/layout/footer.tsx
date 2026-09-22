@@ -1,21 +1,59 @@
-import Link from "next/link";
+import { ActionIcon, Group, Text } from "@mantine/core";
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconMail,
+} from "@tabler/icons-react";
 
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/config/site";
 
 export function Footer() {
   return (
-    <footer className="border-t border-neutral-200 py-8">
-      <Container className="flex flex-col gap-4 text-sm text-neutral-600 sm:flex-row sm:items-center sm:justify-between">
-        <p>
-          © {new Date().getFullYear()} {siteConfig.name}. Built with Next.js.
-        </p>
+    <footer className="footer-shell">
+      <Container>
+        <Group justify="space-between" gap="md">
+          <Text className="muted-text" size="sm">
+            © {new Date().getFullYear()} {siteConfig.name}. Built with Next.js + Mantine.
+          </Text>
 
-        <div className="flex flex-wrap gap-4">
-          <Link href={siteConfig.links.github}>GitHub</Link>
-          <Link href={siteConfig.links.linkedin}>LinkedIn</Link>
-          <Link href={siteConfig.links.email}>Email</Link>
-        </div>
+          <Group gap="xs">
+            <ActionIcon
+              aria-label="GitHub"
+              className="social-icon"
+              component="a"
+              href={siteConfig.links.github}
+              radius="xl"
+              rel="noreferrer"
+              target="_blank"
+              variant="subtle"
+            >
+              <IconBrandGithub size={19} stroke={1.8} />
+            </ActionIcon>
+            <ActionIcon
+              aria-label="LinkedIn"
+              className="social-icon"
+              component="a"
+              href={siteConfig.links.linkedin}
+              radius="xl"
+              rel="noreferrer"
+              target="_blank"
+              variant="subtle"
+            >
+              <IconBrandLinkedin size={19} stroke={1.8} />
+            </ActionIcon>
+            <ActionIcon
+              aria-label="Email"
+              className="social-icon"
+              component="a"
+              href={siteConfig.links.email}
+              radius="xl"
+              variant="subtle"
+            >
+              <IconMail size={19} stroke={1.8} />
+            </ActionIcon>
+          </Group>
+        </Group>
       </Container>
     </footer>
   );
