@@ -1,32 +1,42 @@
+import { Group, Stack, Text, Title } from "@mantine/core";
+import { IconArrowRight, IconMail } from "@tabler/icons-react";
+
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { siteConfig } from "@/config/site";
 
 export function HeroSection() {
   return (
-    <section className="py-24 sm:py-32" id="home">
+    <section className="hero-section" id="home">
       <Container>
-        <div className="max-w-3xl">
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500">
-            {siteConfig.role}
-          </p>
+        <Stack gap="xl">
+          <Text className="hero-eyebrow">{siteConfig.role}</Text>
 
-          <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl lg:text-7xl">
-            I build useful digital experiences with thoughtful engineering.
-          </h1>
+          <Title className="hero-title" order={1}>
+            I build thoughtful digital experiences for the web.
+          </Title>
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-600">
-            Replace this copy with a short introduction that explains what you build,
-            who you want to work with, and what makes your approach different.
-          </p>
+          <Text className="hero-copy">
+            Replace this with a short introduction that explains what you build,
+            who you want to work with, and the kind of problems you enjoy solving.
+          </Text>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/#projects">View projects</Button>
-            <Button href="/#contact" variant="secondary">
+          <Group gap="sm">
+            <Button
+              href="/#projects"
+              rightSection={<IconArrowRight aria-hidden size={18} stroke={1.8} />}
+            >
+              View projects
+            </Button>
+            <Button
+              href="/#contact"
+              leftSection={<IconMail aria-hidden size={18} stroke={1.8} />}
+              variant="secondary"
+            >
               Contact me
             </Button>
-          </div>
-        </div>
+          </Group>
+        </Stack>
       </Container>
     </section>
   );

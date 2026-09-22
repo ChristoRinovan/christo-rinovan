@@ -1,41 +1,50 @@
 "use client";
 
+import { Burger, Drawer, Stack } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import Link from "next/link";
-import { useState } from "react";
 
 import { navigation } from "@/data/navigation";
 
 export function MobileMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [opened, { close, toggle }] = useDisclosure(false);
 
   return (
-    <div className="md:hidden">
-      <button
-        aria-expanded={isOpen}
+    <>
+      <Burger
         aria-label="Toggle navigation menu"
-        className="rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium"
-        onClick={() => setIsOpen((current) => !current)}
-        type="button"
-      >
-        {isOpen ? "Close" : "Menu"}
-      </button>
+        hiddenFrom="sm"
+        onClick={toggle}
+        opened={opened}
+        size="sm"
+      />
 
-      {isOpen ? (
-        <div className="absolute inset-x-4 top-[calc(100%+0.75rem)] rounded-2xl border border-neutral-200 bg-white p-3 shadow-lg">
-          <nav aria-label="Mobile navigation" className="flex flex-col">
-            {navigation.map((item) => (
-              <Link
-                className="rounded-xl px-4 py-3 text-sm font-medium hover:bg-neutral-100"
-                href={item.href}
-                key={item.href}
-                onClick={() => setIsOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      ) : null}
-    </div>
+      <Drawer
+        classNames={{
+          body: "mobile-drawer-body",
+          content: "mobile-drawer-content",
+          header: "mobile-drawer-header",
+          overlay: "mobile-drawer-overlay",
+        }}
+        onClose={close}
+        opened={opened}
+        position="right"
+        size="xs"
+        title="Navigation"
+      >
+        <Stack component="nav" gap="xs">
+          {navigation.map((item) => (
+            <Link
+              className="mobile-nav-link"
+              href={item.href}
+              key={item.href}
+              onClick={close}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </Stack>
+      </Drawer>
+    </>
   );
 }
