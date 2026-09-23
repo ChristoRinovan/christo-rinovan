@@ -2,6 +2,7 @@ import { Group, SimpleGrid, Stack, Text, Title } from "@mantine/core";
 
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
+import { Panel } from "@/components/ui/panel";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { skills } from "@/data/skills";
 
@@ -21,10 +22,7 @@ export function SkillsSection() {
 
           <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
             {skills.map((group) => (
-              <div
-                className="h-full rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-6"
-                key={group.category}
-              >
+              <Panel className="h-full" key={group.category}>
                 <Stack gap="md">
                   <Title
                     className="font-extrabold text-[var(--text)]"
@@ -48,7 +46,7 @@ export function SkillsSection() {
                     needs explanation.
                   </Text>
                 </Stack>
-              </div>
+              </Panel>
             ))}
           </SimpleGrid>
         </Stack>

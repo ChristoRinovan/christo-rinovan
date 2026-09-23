@@ -1,6 +1,8 @@
 import { SimpleGrid, Stack, Text, Title } from "@mantine/core";
 
 import { Container } from "@/components/ui/container";
+import { MetaLabel } from "@/components/ui/meta-label";
+import { Panel } from "@/components/ui/panel";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { journey } from "@/data/journey";
 
@@ -17,14 +19,9 @@ export function JourneySection() {
 
           <SimpleGrid cols={{ base: 1, md: 3 }} spacing="lg">
             {journey.map((item) => (
-              <div
-                className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-6"
-                key={`${item.year}-${item.title}`}
-              >
+              <Panel key={`${item.year}-${item.title}`}>
                 <Stack gap="sm">
-                  <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
-                    {item.year}
-                  </Text>
+                  <MetaLabel>{item.year}</MetaLabel>
 
                   <Title
                     className="font-extrabold text-[var(--text)]"
@@ -38,7 +35,7 @@ export function JourneySection() {
                     {item.description}
                   </Text>
                 </Stack>
-              </div>
+              </Panel>
             ))}
           </SimpleGrid>
         </Stack>

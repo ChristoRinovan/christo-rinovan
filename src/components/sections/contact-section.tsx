@@ -26,34 +26,14 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { Panel } from "@/components/ui/panel";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/config/site";
-
-function validateName(value: string) {
-  if (value.trim().length < 2) {
-    return "Please enter at least 2 characters.";
-  }
-
-  return null;
-}
-
-function validateEmail(value: string) {
-  const emailPattern = /^\S+@\S+\.\S+$/;
-
-  if (!emailPattern.test(value)) {
-    return "Please enter a valid email address.";
-  }
-
-  return null;
-}
-
-function validateMessage(value: string) {
-  if (value.trim().length < 20) {
-    return "Tell me a little more — at least 20 characters.";
-  }
-
-  return null;
-}
+import {
+  validateEmail,
+  validateMessage,
+  validateName,
+} from "@/lib/validation/contact.validation";
 
 export function ContactSection() {
   const form = useForm({
@@ -149,57 +129,58 @@ export function ContactSection() {
               </Group>
             </Stack>
 
-            <form
-              className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-[clamp(1.25rem,3vw,2rem)]"
-              onSubmit={handleSubmit}
-            >
-              <Stack gap="md">
-                <TextInput
-                  key={form.key("name")}
-                  label="Name"
-                  placeholder="Your name"
-                  required
-                  {...form.getInputProps("name")}
-                />
+            <Panel className="p-[clamp(1.25rem,3vw,2rem)]">
+              <form onSubmit={handleSubmit}>
+                <Stack gap="md">
+                  <TextInput
+                    key={form.key("name")}
+                    label="Name"
+                    placeholder="Your name"
+                    required
+                    {...form.getInputProps("name")}
+                  />
 
-                <TextInput
-                  key={form.key("email")}
-                  label="Email"
-                  placeholder="you@example.com"
-                  required
-                  type="email"
-                  {...form.getInputProps("email")}
-                />
+                  <TextInput
+                    key={form.key("email")}
+                    label="Email"
+                    placeholder="you@example.com"
+                    required
+                    type="email"
+                    {...form.getInputProps("email")}
+                  />
 
-                <Textarea
-                  key={form.key("message")}
-                  autosize
-                  label="Message"
-                  minRows={5}
-                  placeholder="Tell me about the role, project, or problem you want to discuss."
-                  required
-                  {...form.getInputProps("message")}
-                />
+                  <Textarea
+                    key={form.key("message")}
+                    autosize
+                    label="Message"
+                    minRows={5}
+                    placeholder="Tell me about the role, project, or problem you want to discuss."
+                    required
+                    {...form.getInputProps("message")}
+                  />
 
-                <div>
-                  <Button
-                    rightSection={<IconSend aria-hidden size={18} stroke={1.8} />}
-                    type="submit"
+                  <div>
+                    <Button
+                      rightSection={
+                        <IconSend aria-hidden size={18} stroke={1.8} />
+                      }
+                      type="submit"
+                    >
+                      Send message
+                    </Button>
+                  </div>
+
+                  <Text
+                    className="leading-[1.6] text-[var(--muted)]"
+                    size="xs"
                   >
-                    Send message
-                  </Button>
-                </div>
-
-                <Text
-                  className="leading-[1.6] text-[var(--muted)]"
-                  size="xs"
-                >
-                  Template note: this currently validates and shows a
-                  notification; it intentionally does not send data anywhere
-                  yet.
-                </Text>
-              </Stack>
-            </form>
+                    Template note: this currently validates and shows a
+                    notification; it intentionally does not send data anywhere
+                    yet.
+                  </Text>
+                </Stack>
+              </form>
+            </Panel>
           </SimpleGrid>
         </Stack>
       </Container>

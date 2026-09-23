@@ -11,6 +11,8 @@ import { Badge } from "@/components/ui/badge";
 import { BulletList } from "@/components/ui/bullet-list";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { MetaLabel } from "@/components/ui/meta-label";
+import { Panel } from "@/components/ui/panel";
 import { projects } from "@/data/projects";
 
 type ProjectPageProps = {
@@ -55,7 +57,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <article className="py-20 pb-28">
+    <article className="pt-20 pb-28">
       <Container>
         <Stack gap={48}>
           <Stack gap="xl" maw={900}>
@@ -72,17 +74,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
 
             <Group gap="sm">
-              <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
-                {project.year}
-              </Text>
-
+              <MetaLabel>{project.year}</MetaLabel>
               <Text aria-hidden="true" className="text-[var(--muted)]">
                 •
               </Text>
-
-              <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
-                {project.role}
-              </Text>
+              <MetaLabel>{project.role}</MetaLabel>
             </Group>
 
             <Title
@@ -133,11 +129,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
 
           <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl">
-            <section className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-6">
+            <Panel>
               <Stack gap="md">
-                <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
-                  Challenge
-                </Text>
+                <MetaLabel>Challenge</MetaLabel>
 
                 <Title
                   className="font-extrabold text-[var(--text)]"
@@ -151,13 +145,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   {project.caseStudy.challenge}
                 </Text>
               </Stack>
-            </section>
+            </Panel>
 
-            <section className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-6">
+            <Panel>
               <Stack gap="md">
-                <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
-                  Solution
-                </Text>
+                <MetaLabel>Solution</MetaLabel>
 
                 <Title
                   className="font-extrabold text-[var(--text)]"
@@ -171,14 +163,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   {project.caseStudy.solution}
                 </Text>
               </Stack>
-            </section>
+            </Panel>
           </SimpleGrid>
 
-          <section className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-6">
+          <Panel>
             <Stack gap="md">
-              <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
-                Highlights
-              </Text>
+              <MetaLabel>Highlights</MetaLabel>
 
               <Title
                 className="font-extrabold text-[var(--text)]"
@@ -190,7 +180,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
               <BulletList items={project.caseStudy.highlights} />
             </Stack>
-          </section>
+          </Panel>
         </Stack>
       </Container>
     </article>

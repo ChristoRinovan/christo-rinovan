@@ -3,6 +3,7 @@ import { IconArrowUpRight } from "@tabler/icons-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { MetaLabel } from "@/components/ui/meta-label";
 import type { Project } from "@/types/project.types";
 
 type ProjectCardProps = {
@@ -21,17 +22,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         <Group gap="xs">
-          <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
-            {project.year}
-          </Text>
-
+          <MetaLabel>{project.year}</MetaLabel>
           <Text aria-hidden="true" className="text-[var(--muted)]">
             •
           </Text>
-
-          <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
-            {project.role}
-          </Text>
+          <MetaLabel>{project.role}</MetaLabel>
         </Group>
 
         <Stack gap="xs">
