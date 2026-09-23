@@ -1,6 +1,9 @@
 import type { JourneyItem } from "@/types/journey.types";
 
-// Replace this timeline with your real learning/work journey.
+/*
+ * Keep this timeline short.
+ * Each item should explain an important step in your growth.
+ */
 export const journey: JourneyItem[] = [
   {
     year: "2024",

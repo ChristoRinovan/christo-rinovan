@@ -7,10 +7,11 @@ import { projects } from "@/data/projects";
 import { ProjectCard } from "./project-card";
 
 export function ProjectsSection() {
+  // Only projects marked as featured are shown on the homepage.
   const featuredProjects = projects.filter((project) => project.featured);
 
   return (
-    <section className="section-shell" id="projects">
+    <section className="scroll-mt-20 py-24 md:py-[7.5rem]" id="projects">
       <Container>
         <Stack gap={48}>
           <SectionHeading

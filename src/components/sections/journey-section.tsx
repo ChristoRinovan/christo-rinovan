@@ -6,7 +6,7 @@ import { journey } from "@/data/journey";
 
 export function JourneySection() {
   return (
-    <section className="section-shell" id="journey">
+    <section className="scroll-mt-20 py-24 md:py-[7.5rem]" id="journey">
       <Container>
         <Stack gap={48}>
           <SectionHeading
@@ -17,13 +17,26 @@ export function JourneySection() {
 
           <SimpleGrid cols={{ base: 1, md: 3 }} spacing="lg">
             {journey.map((item) => (
-              <div className="journey-card" key={`${item.year}-${item.title}`}>
+              <div
+                className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-6"
+                key={`${item.year}-${item.title}`}
+              >
                 <Stack gap="sm">
-                  <Text className="journey-year">{item.year}</Text>
-                  <Title className="journey-title" order={3} size="h4">
+                  <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
+                    {item.year}
+                  </Text>
+
+                  <Title
+                    className="font-extrabold text-[var(--text)]"
+                    order={3}
+                    size="h4"
+                  >
                     {item.title}
                   </Title>
-                  <Text className="body-copy">{item.description}</Text>
+
+                  <Text className="text-[1.05rem] leading-[1.75] text-[var(--muted)]">
+                    {item.description}
+                  </Text>
                 </Stack>
               </div>
             ))}

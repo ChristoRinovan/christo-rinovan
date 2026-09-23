@@ -1,6 +1,9 @@
 import type { SkillGroup } from "@/types/skill.types";
 
-// Keep only technologies you can confidently discuss or demonstrate.
+/*
+ * Keep only skills that you can confidently explain in an interview
+ * or demonstrate through your projects.
+ */
 export const skills: SkillGroup[] = [
   {
     category: "Frontend",

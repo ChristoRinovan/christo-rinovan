@@ -1,8 +1,16 @@
 import { Badge as MantineBadge } from "@mantine/core";
 
-export function Badge({ children }: { children: React.ReactNode }) {
+type BadgeProps = {
+  children: React.ReactNode;
+};
+
+export function Badge({ children }: BadgeProps) {
   return (
-    <MantineBadge className="portfolio-badge" radius="xl" variant="light">
+    <MantineBadge
+      className="border border-[color-mix(in_srgb,var(--accent)_25%,var(--border))] bg-[var(--surface-accent)] font-bold text-[var(--accent)]"
+      radius="xl"
+      variant="light"
+    >
       {children}
     </MantineBadge>
   );

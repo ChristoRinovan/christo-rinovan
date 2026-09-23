@@ -1,3 +1,4 @@
+// Navbar and mobile menu use the same navigation data.
 export const navigation = [
   { label: "About", href: "/#about" },
   { label: "Projects", href: "/#projects" },

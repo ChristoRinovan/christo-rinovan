@@ -5,7 +5,10 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 export function AboutSection() {
   return (
-    <section className="section-shell section-shell-soft" id="about">
+    <section
+      className="scroll-mt-20 bg-[var(--surface-soft)] py-24 md:py-[7.5rem]"
+      id="about"
+    >
       <Container>
         <SimpleGrid cols={{ base: 1, md: 2 }} spacing={48}>
           <SectionHeading
@@ -15,12 +18,13 @@ export function AboutSection() {
           />
 
           <Stack gap="md">
-            <Text className="body-copy">
+            <Text className="text-[1.05rem] leading-[1.75] text-[var(--muted)]">
               Write 1–2 paragraphs about your focus as a developer, what you care
               about when building products, and what kind of team or client you
               want to collaborate with.
             </Text>
-            <Text className="body-copy">
+
+            <Text className="text-[1.05rem] leading-[1.75] text-[var(--muted)]">
               Keep the details concrete. Your projects and journey sections can
               provide the evidence behind this introduction.
             </Text>

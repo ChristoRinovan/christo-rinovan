@@ -7,7 +7,10 @@ import { skills } from "@/data/skills";
 
 export function SkillsSection() {
   return (
-    <section className="section-shell section-shell-soft" id="skills">
+    <section
+      className="scroll-mt-20 bg-[var(--surface-soft)] py-24 md:py-[7.5rem]"
+      id="skills"
+    >
       <Container>
         <Stack gap={48}>
           <SectionHeading
@@ -18,17 +21,29 @@ export function SkillsSection() {
 
           <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
             {skills.map((group) => (
-              <div className="skill-card" key={group.category}>
+              <div
+                className="h-full rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-6"
+                key={group.category}
+              >
                 <Stack gap="md">
-                  <Title className="skill-category" order={3} size="h4">
+                  <Title
+                    className="font-extrabold text-[var(--text)]"
+                    order={3}
+                    size="h4"
+                  >
                     {group.category}
                   </Title>
+
                   <Group gap="xs">
                     {group.items.map((skill) => (
                       <Badge key={skill}>{skill}</Badge>
                     ))}
                   </Group>
-                  <Text className="muted-text" size="sm">
+
+                  <Text
+                    className="text-sm leading-[1.75] text-[var(--muted)]"
+                    size="sm"
+                  >
                     Replace this helper text with context only if the category
                     needs explanation.
                   </Text>

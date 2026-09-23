@@ -1,6 +1,9 @@
 import type { Project } from "@/types/project.types";
 
-// Replace these examples with your 2-3 strongest projects.
+/*
+ * This file is the single source of truth for portfolio projects.
+ * Replace these examples with your 2–3 strongest real projects.
+ */
 export const projects: Project[] = [
   {
     slug: "project-one",

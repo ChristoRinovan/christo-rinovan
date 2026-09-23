@@ -1,5 +1,10 @@
 "use client";
 
+/*
+ * This is a Client Component because:
+ * - useForm manages form state in the browser
+ * - notifications.show runs after the user submits the form
+ */
 import {
   Group,
   SimpleGrid,
@@ -24,6 +29,32 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/config/site";
 
+function validateName(value: string) {
+  if (value.trim().length < 2) {
+    return "Please enter at least 2 characters.";
+  }
+
+  return null;
+}
+
+function validateEmail(value: string) {
+  const emailPattern = /^\S+@\S+\.\S+$/;
+
+  if (!emailPattern.test(value)) {
+    return "Please enter a valid email address.";
+  }
+
+  return null;
+}
+
+function validateMessage(value: string) {
+  if (value.trim().length < 20) {
+    return "Tell me a little more — at least 20 characters.";
+  }
+
+  return null;
+}
+
 export function ContactSection() {
   const form = useForm({
     mode: "uncontrolled",
@@ -33,19 +64,15 @@ export function ContactSection() {
       message: "",
     },
     validate: {
-      name: (value) =>
-        value.trim().length >= 2 ? null : "Please enter at least 2 characters.",
-      email: (value) =>
-        /^\S+@\S+\.\S+$/.test(value) ? null : "Please enter a valid email address.",
-      message: (value) =>
-        value.trim().length >= 20
-          ? null
-          : "Tell me a little more — at least 20 characters.",
+      name: validateName,
+      email: validateEmail,
+      message: validateMessage,
     },
   });
 
   const handleSubmit = form.onSubmit(() => {
-    // Template behavior only. Connect this handler to your email/API before production.
+    // This is still demo behavior.
+    // Later, connect this function to an API/email service.
     notifications.show({
       title: "Form validation works",
       message:
@@ -64,7 +91,10 @@ export function ContactSection() {
   });
 
   return (
-    <section className="section-shell section-shell-soft" id="contact">
+    <section
+      className="scroll-mt-20 bg-[var(--surface-soft)] py-24 md:py-[7.5rem]"
+      id="contact"
+    >
       <Container>
         <Stack gap={48}>
           <SectionHeading
@@ -76,12 +106,16 @@ export function ContactSection() {
           <SimpleGrid cols={{ base: 1, md: 2 }} spacing={48}>
             <Stack gap="xl">
               <Stack gap="sm">
-                <Title className="contact-title" order={3}>
+                <Title
+                  className="font-extrabold tracking-[-0.025em] text-[var(--text)]"
+                  order={3}
+                >
                   Prefer a direct channel?
                 </Title>
-                <Text className="body-copy">
-                  Keep these links updated in src/config/site.ts so recruiters and
-                  clients always have a simple way to reach you.
+
+                <Text className="text-[1.05rem] leading-[1.75] text-[var(--muted)]">
+                  Keep these links updated in src/config/site.ts so recruiters
+                  and clients always have a simple way to reach you.
                 </Text>
               </Stack>
 
@@ -92,16 +126,22 @@ export function ContactSection() {
                 >
                   Email
                 </Button>
+
                 <Button
                   href={siteConfig.links.github}
-                  leftSection={<IconBrandGithub aria-hidden size={18} stroke={1.8} />}
+                  leftSection={
+                    <IconBrandGithub aria-hidden size={18} stroke={1.8} />
+                  }
                   variant="secondary"
                 >
                   GitHub
                 </Button>
+
                 <Button
                   href={siteConfig.links.linkedin}
-                  leftSection={<IconBrandLinkedin aria-hidden size={18} stroke={1.8} />}
+                  leftSection={
+                    <IconBrandLinkedin aria-hidden size={18} stroke={1.8} />
+                  }
                   variant="secondary"
                 >
                   LinkedIn
@@ -109,7 +149,10 @@ export function ContactSection() {
               </Group>
             </Stack>
 
-            <form className="contact-form" onSubmit={handleSubmit}>
+            <form
+              className="rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-[clamp(1.25rem,3vw,2rem)]"
+              onSubmit={handleSubmit}
+            >
               <Stack gap="md">
                 <TextInput
                   key={form.key("name")}
@@ -147,9 +190,13 @@ export function ContactSection() {
                   </Button>
                 </div>
 
-                <Text className="form-helper" size="xs">
-                  Template note: this currently validates and shows a notification;
-                  it intentionally does not send data anywhere yet.
+                <Text
+                  className="leading-[1.6] text-[var(--muted)]"
+                  size="xs"
+                >
+                  Template note: this currently validates and shows a
+                  notification; it intentionally does not send data anywhere
+                  yet.
                 </Text>
               </Stack>
             </form>

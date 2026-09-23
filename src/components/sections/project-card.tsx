@@ -11,23 +11,40 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card className="project-card" padding={0} shadow="none">
+    <Card
+      className="h-full rounded-[var(--radius-md)] border border-[var(--border)] bg-[var(--surface)] p-[1.4rem] transition-[transform,box-shadow,border-color] duration-[180ms] ease hover:-translate-y-1 hover:border-[color-mix(in_srgb,var(--accent)_35%,var(--border))] hover:shadow-[var(--shadow)]"
+      shadow="none"
+    >
       <Stack gap="lg" h="100%">
-        <div className="project-placeholder">Project visual / screenshot</div>
+        <div className="grid min-h-[14rem] place-items-center rounded-[var(--radius-md)] bg-[var(--surface-accent)] text-center text-[0.85rem] font-bold text-[var(--accent)]">
+          Project visual / screenshot
+        </div>
 
         <Group gap="xs">
-          <Text className="project-meta">{project.year}</Text>
-          <Text className="muted-text" aria-hidden="true">
+          <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
+            {project.year}
+          </Text>
+
+          <Text aria-hidden="true" className="text-[var(--muted)]">
             •
           </Text>
-          <Text className="project-meta">{project.role}</Text>
+
+          <Text className="text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-[var(--accent)]">
+            {project.role}
+          </Text>
         </Group>
 
         <Stack gap="xs">
-          <Title className="project-card-title" order={3}>
+          <Title
+            className="font-extrabold tracking-[-0.03em] text-[var(--text)]"
+            order={3}
+          >
             {project.title}
           </Title>
-          <Text className="project-card-copy">{project.summary}</Text>
+
+          <Text className="leading-[1.7] text-[var(--muted)]">
+            {project.summary}
+          </Text>
         </Stack>
 
         <Group gap="xs">
@@ -36,10 +53,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </Group>
 
-        <div style={{ marginTop: "auto" }}>
+        <div className="mt-auto">
           <Button
             href={`/projects/${project.slug}`}
-            rightSection={<IconArrowUpRight aria-hidden size={18} stroke={1.8} />}
+            rightSection={
+              <IconArrowUpRight aria-hidden size={18} stroke={1.8} />
+            }
             variant="secondary"
           >
             Read case study

@@ -1,7 +1,5 @@
 import { Stack, Text, Title } from "@mantine/core";
 
-import { cn } from "@/lib/utils/cn";
-
 type SectionHeadingProps = {
   eyebrow?: string;
   title: string;
@@ -16,13 +14,22 @@ export function SectionHeading({
   className,
 }: SectionHeadingProps) {
   return (
-    <Stack className={cn(className)} gap="sm" maw={720}>
-      {eyebrow ? <Text className="section-kicker">{eyebrow}</Text> : null}
-      <Title className="section-title" order={2}>
+    <Stack className={className} gap="sm" maw={720}>
+      {eyebrow ? (
+        <Text className="text-[0.78rem] font-extrabold uppercase tracking-[0.16em] text-[var(--accent)]">
+          {eyebrow}
+        </Text>
+      ) : null}
+
+      <Title
+        className="text-[clamp(2rem,4vw,3.25rem)] font-extrabold leading-[1.05] tracking-[-0.045em] text-[var(--text)]"
+        order={2}
+      >
         {title}
       </Title>
+
       {description ? (
-        <Text className="section-description" size="lg">
+        <Text className="leading-[1.75] text-[var(--muted)]" size="lg">
           {description}
         </Text>
       ) : null}

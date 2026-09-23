@@ -10,17 +10,18 @@ import { siteConfig } from "@/config/site";
 
 export function Footer() {
   return (
-    <footer className="footer-shell">
+    <footer className="border-t border-[var(--border)] py-8">
       <Container>
-        <Group justify="space-between" gap="md">
-          <Text className="muted-text" size="sm">
-            © {new Date().getFullYear()} {siteConfig.name}. Built with Next.js + Mantine.
+        <Group gap="md" justify="space-between">
+          <Text className="text-[var(--muted)]" size="sm">
+            © {new Date().getFullYear()} {siteConfig.name}. Built with Next.js +
+            Mantine.
           </Text>
 
           <Group gap="xs">
             <ActionIcon
               aria-label="GitHub"
-              className="social-icon"
+              className="border border-transparent text-[var(--muted)] hover:border-[var(--border)] hover:bg-[var(--surface-accent)] hover:text-[var(--accent)]"
               component="a"
               href={siteConfig.links.github}
               radius="xl"
@@ -30,9 +31,10 @@ export function Footer() {
             >
               <IconBrandGithub size={19} stroke={1.8} />
             </ActionIcon>
+
             <ActionIcon
               aria-label="LinkedIn"
-              className="social-icon"
+              className="border border-transparent text-[var(--muted)] hover:border-[var(--border)] hover:bg-[var(--surface-accent)] hover:text-[var(--accent)]"
               component="a"
               href={siteConfig.links.linkedin}
               radius="xl"
@@ -42,9 +44,10 @@ export function Footer() {
             >
               <IconBrandLinkedin size={19} stroke={1.8} />
             </ActionIcon>
+
             <ActionIcon
               aria-label="Email"
-              className="social-icon"
+              className="border border-transparent text-[var(--muted)] hover:border-[var(--border)] hover:bg-[var(--surface-accent)] hover:text-[var(--accent)]"
               component="a"
               href={siteConfig.links.email}
               radius="xl"

@@ -9,7 +9,10 @@ type ContainerProps = {
 
 export function Container({ children, className }: ContainerProps) {
   return (
-    <MantineContainer className={cn("site-container", className)} size="72rem">
+    <MantineContainer
+      className={cn("px-4 md:px-6 lg:px-8", className)}
+      size="72rem"
+    >
       {children}
     </MantineContainer>
   );
