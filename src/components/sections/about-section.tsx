@@ -10,19 +10,18 @@ export function AboutSection() {
         <SimpleGrid cols={{ base: 1, md: 2 }} spacing={48}>
           <SectionHeading
             eyebrow="About"
-            title="A short story is stronger than a long autobiography."
-            description="Use this section to introduce the way you think and work, not to repeat your entire CV."
+            title="I’m interested in the systems behind useful products."
+            description="My path into software development began with a career transition from Philosophy of Divinity and a desire to turn ideas into practical products people can actually use."
           />
 
           <Stack gap="md">
             <Text className="body-copy">
-              Write 1–2 paragraphs about your focus as a developer, what you care
-              about when building products, and what kind of team or client you
-              want to collaborate with.
+              I graduated from STFT Widya Sasana Malang in 2025 with a degree in Philosophy of Divinity. After graduating, I spent several months in pastoral service in rural
+              Kalimantan before transitioning into software development through Purwadhika’s Full Stack Web Development Job Connector program.
             </Text>
             <Text className="body-copy">
-              Keep the details concrete. Your projects and journey sections can
-              provide the evidence behind this introduction.
+              Through team projects, I found myself most interested in backend development—designing APIs, authentication and access control, data models, and business workflows. I
+              also work across the frontend when needed, which helps me understand how backend decisions affect the application as a whole.
             </Text>
           </Stack>
         </SimpleGrid>
