@@ -10,11 +10,7 @@ export function SkillsSection() {
     <section className="section-shell section-shell-soft" id="skills">
       <Container>
         <Stack gap={48}>
-          <SectionHeading
-            eyebrow="Skills"
-            title="Tools I can actually discuss and demonstrate."
-            description="Group skills by how you use them instead of assigning arbitrary percentage bars."
-          />
+          <SectionHeading eyebrow="Skills" title="Technologies I’ve used to build full-stack applications." />
 
           <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
             {skills.map((group) => (
@@ -28,10 +24,7 @@ export function SkillsSection() {
                       <Badge key={skill}>{skill}</Badge>
                     ))}
                   </Group>
-                  <Text className="muted-text" size="sm">
-                    Replace this helper text with context only if the category
-                    needs explanation.
-                  </Text>
+                  <Text className="muted-text" size="sm"></Text>
                 </Stack>
               </div>
             ))}

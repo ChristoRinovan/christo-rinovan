@@ -1,53 +1,69 @@
 import type { Project } from "@/types/project.types";
 
-// Replace these examples with your 2-3 strongest projects.
 export const projects: Project[] = [
   {
-    slug: "project-one",
-    title: "Project One",
+    slug: "popo-laundry",
+    title: "Popo Laundry",
     summary:
-      "A short, outcome-focused summary that explains what the project does and why it matters.",
+      "A full-stack laundry operations platform connecting customers, outlet staff, drivers, and workers across pickup, processing, payment, and delivery workflows.",
     description:
-      "Use this space for a concise project overview: who it was for, the main problem, and the result you delivered.",
+      "Built as a three-person team project. My main responsibility was the field-operations flow for drivers and workers, including task states, attendance, operating-hour restrictions, task history, employee profiles, and integration between backend rules and the frontend experience.",
     year: "2026",
-    role: "Fullstack Developer",
-    technologies: ["Next.js", "TypeScript", "Mantine"],
-    repositoryUrl: "https://github.com/ChristoRinovan/project-one",
-    liveUrl: "https://example.com",
+    role: "Full-Stack Developer · Backend Focus",
+    team: "3 developers",
+    technologies: ["TypeScript", "Express.js", "Prisma", "PostgreSQL", "Next.js", "React", "Zod", "JWT"],
+    image: {
+      src: "/images/projects/popo-laundry.png",
+      alt: "Popo Laundry dashboard showing driver and worker task management",
+      width: 1600,
+      height: 900,
+    },
+    repositoryUrl: "https://github.com/kelompokfinalsehat/Laundry-Backend",
+    liveUrl: "https://laundryapp-ui.vercel.app/",
     featured: true,
     caseStudy: {
       challenge:
-        "Explain the main product or engineering problem. Keep it specific enough that a recruiter or client understands the constraint.",
+        "The most challenging part was keeping field operations secure and consistent. Drivers and workers needed to access only the actions appropriate to their role, assignment, current task state, and operating hours.",
       solution:
-        "Explain your approach, the important implementation decisions, and why you chose them.",
+        "I implemented and refined backend workflows around task assignments, attendance, operational restrictions, order-state transitions, and role-aware access. I also worked on the corresponding frontend flows to ensure the interface followed the state and rules defined by the backend.",
       highlights: [
-        "Describe one meaningful technical contribution.",
-        "Describe one UX, performance, or product improvement.",
-        "Describe one lesson or measurable outcome.",
+        "Built and refined task workflows and task-history functionality for drivers and workers.",
+        "Implemented operating-hour restrictions and attendance logic for field operations.",
+        "Worked on employee profile functionality and role-aware application states.",
+        "Resolved integration and workflow edge cases across the backend and frontend.",
       ],
     },
   },
   {
-    slug: "project-two",
-    title: "Project Two",
+    slug: "rtku",
+    title: "RTku — Neighborhood Finance Management",
     summary:
-      "Another selected project. Focus the summary on the problem solved rather than listing technologies.",
+      "A neighborhood financial management application for managing residents, dues, bills, payments, income, expenses, and financial reporting.",
     description:
-      "This second example shows that every project detail page is generated from the same static data source.",
-    year: "2025",
-    role: "Frontend Developer",
-    technologies: ["React", "TypeScript", "REST API"],
-    repositoryUrl: "https://github.com/ChristoRinovan/project-two",
+      "Built as a two-person team project. My work focused primarily on authentication, role-based access control, user management, fee and billing workflows, and the backend APIs responsible for enforcing those rules.",
+    year: "2026",
+    role: "Full-Stack Developer · Backend Focus",
+    team: "2 developers",
+    technologies: ["TypeScript", "Express.js", "Prisma", "PostgreSQL", "Next.js", "React", "Zod", "JWT"],
+    image: {
+      src: "/images/projects/rtku.png",
+      alt: "RTku dashboard showing resident bills and payment status",
+      width: 1600,
+      height: 900,
+    },
+    // repositoryUrl: "https://github.com/...",   // isi jika ada
+    // liveUrl: "https://...",                    // isi jika ada
     featured: true,
     caseStudy: {
       challenge:
-        "Describe the situation before your solution and the most important constraint you had to work with.",
+        "The main challenge was keeping permissions and billing states consistent across multiple user roles and financial workflows.",
       solution:
-        "Describe how you broke the problem down and what you personally implemented.",
+        "I worked on authentication and role-based access control, user and role management, bill generation, due-date rules, overdue handling, scheduled status updates, and server-side search and pagination. I also adjusted frontend behavior to remain consistent with backend validation and business rules.",
       highlights: [
-        "A feature you are proud of.",
-        "A difficult problem you solved.",
-        "A result, improvement, or learning from the project.",
+        "Implemented authentication and role-based access flows across backend and frontend.",
+        "Developed user and role-management functionality.",
+        "Built billing logic involving fee types, due dates, overdue states, and scheduled status updates.",
+        "Improved bill management through server-side search, filtering, summaries, and pagination.",
       ],
     },
   },

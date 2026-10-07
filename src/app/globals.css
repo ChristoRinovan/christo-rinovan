@@ -53,6 +53,8 @@ select {
   color: var(--accent-contrast);
 }
 
+/* ---------- Layout & navigation ---------- */
+
 .site-container {
   width: 100%;
   padding-inline: 1rem;
@@ -111,11 +113,13 @@ select {
   color: var(--accent);
 }
 
+/* ---------- Hero ---------- */
+
 .hero-section {
   display: flex;
   min-height: calc(100svh - 4.5rem);
   align-items: center;
-  padding-block: 5rem;
+  padding-block: 4rem;
 }
 
 .hero-eyebrow,
@@ -126,6 +130,7 @@ select {
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -144,7 +149,7 @@ select {
 .hero-title {
   max-width: 40rem;
   color: var(--text);
-  font-size: clamp(2rem, 4.2vw, 3.25rem); /* sebelumnya 3rem - 6.5rem */
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1.1;
@@ -163,13 +168,25 @@ select {
   aspect-ratio: 4 / 5;
   justify-self: center;
   overflow: hidden;
-  border-radius: 1.5rem;
-  box-shadow: 0 20px 50px rgb(0 0 0 / 0.18);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-soft);
+  box-shadow: var(--shadow);
 }
 
 .hero-photo-img {
   object-fit: cover;
 }
+
+/* Mobile: tampilkan foto di atas teks. Hapus blok ini jika ingin foto di bawah. */
+@media (max-width: 61.99rem) {
+  .hero-photo {
+    order: -1;
+    width: min(100%, 16rem);
+  }
+}
+
+/* ---------- Sections ---------- */
 
 .section-shell {
   padding-block: 6rem;
@@ -198,6 +215,8 @@ select {
 .body-copy {
   font-size: 1.05rem;
 }
+
+/* ---------- Cards & surfaces ---------- */
 
 .surface,
 .project-card,
@@ -244,6 +263,7 @@ select {
   line-height: 1.7;
 }
 
+/* Placeholder dipakai hanya jika project belum punya gambar */
 .project-placeholder,
 .project-visual {
   display: grid;
@@ -255,6 +275,28 @@ select {
   font-size: 0.85rem;
   font-weight: 700;
   text-align: center;
+}
+
+/* Gambar project (kartu & halaman detail) */
+.project-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-accent);
+}
+
+.project-image-large {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.project-image-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top; /* cocok untuk screenshot dashboard */
 }
 
 .portfolio-badge {
@@ -342,16 +384,19 @@ select {
   font-weight: 800;
 }
 
+/* ---------- Project detail page ---------- */
+
 .project-detail {
   padding-block: 5rem 7rem;
 }
 
+/* Diperkecil karena judul project bisa panjang (mis. "RTku — Neighborhood Finance Management") */
 .project-detail-title {
   color: var(--text);
-  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 0.96;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
 }
 
 .project-detail-copy {
@@ -365,6 +410,8 @@ select {
   color: var(--muted);
   line-height: 1.75;
 }
+
+/* ---------- Responsive container & section spacing ---------- */
 
 @media (min-width: 48em) {
   .site-container {
@@ -382,6 +429,8 @@ select {
   }
 }
 
+/* ---------- Contact form ---------- */
+
 .contact-title {
   color: var(--text);
   font-weight: 800;
@@ -393,6 +442,16 @@ select {
   border-radius: var(--radius-md);
   background: var(--surface);
   padding: clamp(1.25rem, 3vw, 2rem);
+}
+.contact-info {
+  align-self: start;
+}
+
+@media (min-width: 48em) {
+  .contact-info {
+    position: sticky;
+    top: 6rem;
+  }
 }
 
 /* Mantine static selectors: keep form visuals centralized in globals.css. */

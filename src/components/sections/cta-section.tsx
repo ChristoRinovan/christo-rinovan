@@ -10,20 +10,17 @@ export function CtaSection() {
       <Container>
         <div className="cta-card">
           <Stack gap="lg" maw={760}>
-            <Text className="section-kicker">Let&apos;s work together</Text>
+            <Text className="section-kicker">Open to opportunities</Text>
             <Title className="section-title" order={2}>
-              Have a role, project, or problem worth discussing?
+              Looking for a developer who enjoys working through backend logic?
             </Title>
             <Text className="body-copy">
-              Replace this text with the kind of opportunities you are currently
-              open to: full-time work, freelance projects, or both.
+              I’m currently looking for internship opportunities and am also open to junior developer roles. I’m comfortable working across the stack, with a particular interest in
+              backend development.
             </Text>
             <Group>
-              <Button
-                href="/#contact"
-                leftSection={<IconMessageCircle aria-hidden size={18} stroke={1.8} />}
-              >
-                Start a conversation
+              <Button href="/#contact" leftSection={<IconMessageCircle aria-hidden size={18} stroke={1.8} />}>
+                Get in touch
               </Button>
             </Group>
           </Stack>

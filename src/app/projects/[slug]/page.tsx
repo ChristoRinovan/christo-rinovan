@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Group,  SimpleGrid, Stack, Text, Title } from "@mantine/core";
+import { Group, SimpleGrid, Stack, Text, Title } from "@mantine/core";
 import { IconArrowLeft, IconBrandGithub, IconExternalLink } from "@tabler/icons-react";
 import { notFound } from "next/navigation";
-
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -90,7 +90,21 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </Group>
           </Stack>
 
-          <div className="project-visual">Large project screenshot / visual placeholder</div>
+          {project.image ? (
+            <div className="project-image project-image-large">
+              <Image
+                src={project.image.src}
+                alt={project.image.alt}
+                width={project.image.width}
+                height={project.image.height}
+                sizes="(max-width: 900px) 100vw, 900px"
+                priority
+                className="project-image-img"
+              />
+            </div>
+          ) : (
+            <div className="project-visual">Large project screenshot / visual placeholder</div>
+          )}
 
           <SimpleGrid cols={{ base: 1, md: 2 }} spacing="xl">
             <section className="case-study-panel">
