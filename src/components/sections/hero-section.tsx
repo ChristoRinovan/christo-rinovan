@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Group, Stack, Text, Title } from "@mantine/core";
 import { IconArrowRight, IconMail } from "@tabler/icons-react";
 
@@ -9,34 +10,53 @@ export function HeroSection() {
   return (
     <section className="hero-section" id="home">
       <Container>
-        <Stack gap="xl">
-          <Text className="hero-eyebrow">{siteConfig.role}</Text>
+        <div className="hero-grid">
+          <Stack className="hero-content" gap="xl" align="flex-start">
+            <Text className="hero-eyebrow">{siteConfig.role}</Text>
 
-          <Title className="hero-title" order={1}>
-            I build thoughtful digital experiences for the web.
-          </Title>
+            <Title className="hero-title" order={1}>
+              I build full-stack web applications with a focus on reliable
+              backend systems.
+            </Title>
 
-          <Text className="hero-copy">
-            Replace this with a short introduction that explains what you build,
-            who you want to work with, and the kind of problems you enjoy solving.
-          </Text>
+            <Text className="hero-copy">
+              Full-stack developer and bootcamp graduate with hands-on
+              experience building team-based applications around
+              authentication, role-based access, operational workflows, and
+              REST APIs. Based in Surabaya and currently open to internship and
+              junior developer opportunities.
+            </Text>
 
-          <Group gap="sm">
-            <Button
-              href="/#projects"
-              rightSection={<IconArrowRight aria-hidden size={18} stroke={1.8} />}
-            >
-              View projects
-            </Button>
-            <Button
-              href="/#contact"
-              leftSection={<IconMail aria-hidden size={18} stroke={1.8} />}
-              variant="secondary"
-            >
-              Contact me
-            </Button>
-          </Group>
-        </Stack>
+            <Group gap="sm">
+              <Button
+                href="/#projects"
+                rightSection={
+                  <IconArrowRight aria-hidden size={18} stroke={1.8} />
+                }
+              >
+                View projects
+              </Button>
+              <Button
+                href="/#contact"
+                leftSection={<IconMail aria-hidden size={18} stroke={1.8} />}
+                variant="secondary"
+              >
+                Get in touch
+              </Button>
+            </Group>
+          </Stack>
+
+          <div className="hero-photo">
+            <Image
+              src="/images/profile/profile.jpg"
+              alt="Portrait of Christo Rinovan"
+              fill
+              priority
+              sizes="(max-width: 992px) 80vw, 352px"
+              className="hero-photo-img"
+            />
+          </div>
+        </div>
       </Container>
     </section>
   );
