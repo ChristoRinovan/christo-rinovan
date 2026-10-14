@@ -1,5 +1,7 @@
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+import '@mantine/core/styles.css';
+import '@mantine/carousel/styles.css';
 import "./globals.css";
 
 import type { Metadata } from "next";

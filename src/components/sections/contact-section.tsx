@@ -113,6 +113,9 @@ export function ContactSection() {
               <Button href={siteConfig.links.github} leftSection={<IconBrandGithub aria-hidden size={18} stroke={1.8} />} variant="secondary">
                 GitHub
               </Button>
+               <Button href={siteConfig.links.github} leftSection={<IconBrandGithub aria-hidden size={18} stroke={1.8} />} variant="secondary">
+                GitHub
+              </Button>
             </Group>
           </Stack>
 
