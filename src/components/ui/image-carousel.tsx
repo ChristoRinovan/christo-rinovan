@@ -11,7 +11,7 @@ const profileImage = [
   { src: "/images/profile/profile3.JPG", alt: "Potrait of Christo Rinovan" },
 ];
 
-const DELAY = 3000;
+const DELAY = 4000; //ms
 
 export default function ImageCarousels() {
   const autoplay = useRef(
