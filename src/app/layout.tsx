@@ -1,16 +1,12 @@
-import "@mantine/core/styles.css";
-import "@mantine/notifications/styles.css";
-import '@mantine/core/styles.css';
-import '@mantine/carousel/styles.css';
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from "@mantine/core";
-import { Notifications } from "@mantine/notifications";
+import { MantineProvider, mantineHtmlProps } from "@mantine/core";
 
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { siteConfig } from "@/config/site";
+import { mantineTheme } from "@/theme/mantine-theme";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -28,12 +24,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" {...mantineHtmlProps}>
-      <head>
-        <ColorSchemeScript defaultColorScheme="light" />
-      </head>
       <body>
-        <MantineProvider defaultColorScheme="light">
-          <Notifications layout="stacked" limit={3} position="top-right" />
+        <MantineProvider forceColorScheme="light" theme={mantineTheme}>
           <Navbar />
           <main>{children}</main>
           <Footer />

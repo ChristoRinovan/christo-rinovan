@@ -1,149 +1,71 @@
-"use client";
+import {
+  IconArrowUpRight,
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconMail,
+} from "@tabler/icons-react";
 
-import { Group, SimpleGrid, Stack, Text, Textarea, TextInput, Title } from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { notifications } from "@mantine/notifications";
-import { IconAlertCircle, IconBrandGithub, IconCheck, IconMail, IconSend } from "@tabler/icons-react";
-import { useState } from "react";
-
-import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { siteConfig } from "@/config/site";
 
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
-
-const notificationClassNames = {
-  root: "portfolio-notification",
-  icon: "portfolio-notification-icon",
-  title: "portfolio-notification-title",
-  description: "portfolio-notification-description",
-  closeButton: "portfolio-notification-close",
-};
+const contactLinks = [
+  { label: "GitHub", href: siteConfig.links.github, icon: IconBrandGithub, external: true },
+  { label: "Email", href: siteConfig.links.email, icon: IconMail, external: false },
+  { label: "LinkedIn", href: siteConfig.links.linkedin, icon: IconBrandLinkedin, external: true },
+] as const;
 
 export function ContactSection() {
-  const [submitting, setSubmitting] = useState(false);
-
-  const form = useForm({
-    mode: "uncontrolled",
-    initialValues: {
-      name: "",
-      email: "",
-      message: "",
-    },
-    validate: {
-      name: (value) => (value.trim().length >= 2 ? null : "Please enter at least 2 characters."),
-      email: (value) => (/^\S+@\S+\.\S+$/.test(value) ? null : "Please enter a valid email address."),
-      message: (value) => (value.trim().length >= 20 ? null : "Tell me a little more — at least 20 characters."),
-    },
-  });
-
-  const handleSubmit = form.onSubmit(async (values) => {
-    if (!FORMSPREE_ID) {
-      notifications.show({
-        title: "Form is not configured",
-        message: `Please email me directly at ${siteConfig.email}.`,
-        color: "red",
-        icon: <IconAlertCircle aria-hidden size={18} stroke={2} />,
-        classNames: notificationClassNames,
-      });
-      return;
-    }
-
-    setSubmitting(true);
-
-    try {
-      const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (!response.ok) {
-        throw new Error("Request failed");
-      }
-
-      notifications.show({
-        title: "Message sent",
-        message: "Thank you for reaching out. I'll get back to you soon.",
-        icon: <IconCheck aria-hidden size={18} stroke={2} />,
-        classNames: notificationClassNames,
-      });
-
-      form.reset();
-    } catch {
-      notifications.show({
-        title: "Message could not be sent",
-        message: `Something went wrong. Please email me directly at ${siteConfig.email}.`,
-        color: "red",
-        icon: <IconAlertCircle aria-hidden size={18} stroke={2} />,
-        classNames: notificationClassNames,
-      });
-    } finally {
-      setSubmitting(false);
-    }
-  });
-
   return (
-    <section className="section-shell section-shell-soft" id="contact">
+    <section
+      aria-labelledby="contact-title"
+      className="scroll-mt-20 bg-surface-soft py-20 sm:py-28 lg:py-36"
+      id="contact"
+    >
       <Container>
-        <SimpleGrid cols={{ base: 1, md: 2 }} spacing={{ base: 40, md: 64 }}>
-          {/* Kiri: teks & kontak langsung */}
-          <Stack gap={40} className="contact-info">
-            <SectionHeading
-              eyebrow="Contact"
-              title="Let's talk about an opportunity."
-              description="I'm based in Surabaya and open to on-site or remote opportunities. The best way to reach me is by email, and you can also explore my projects and development history on GitHub."
-            />
+        <div className="grid min-w-0 grid-cols-1 items-center gap-10 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:gap-12 lg:gap-16">
+          <div className="min-w-0">
+            <h2
+              className="max-w-[16ch] text-[clamp(2.5rem,5vw,4.75rem)] leading-[1.06] font-extrabold tracking-[-0.05em] text-text"
+              id="contact-title"
+            >
+              Let's talk about an opportunity.
+            </h2>
+            <p className="mt-6 max-w-2xl text-base leading-[1.8] text-muted sm:mt-8 sm:text-lg">
+              I'm based in Surabaya and open to on-site or remote opportunities. The best way to
+              reach me is by email, and you can also explore my projects and development history
+              on GitHub.
+            </p>
+          </div>
 
-            <Stack gap="sm">
-              <Title className="contact-title" order={3}>
-                Prefer a direct channel?
-              </Title>
-              <Text className="body-copy">Feel free to reach out about internship opportunities, junior developer roles, or development projects.</Text>
-            </Stack>
+          <nav aria-label="Contact links" className="flex min-w-0 flex-col gap-3 sm:gap-4">
+            {contactLinks.map((link) => {
+              const Icon = link.icon;
 
-            <Group gap="sm">
-              <Button href={siteConfig.links.email} leftSection={<IconMail aria-hidden size={18} stroke={1.8} />}>
-                Email
-              </Button>
-              <Button href={siteConfig.links.github} leftSection={<IconBrandGithub aria-hidden size={18} stroke={1.8} />} variant="secondary">
-                GitHub
-              </Button>
-               <Button href={siteConfig.links.github} leftSection={<IconBrandGithub aria-hidden size={18} stroke={1.8} />} variant="secondary">
-                GitHub
-              </Button>
-            </Group>
-          </Stack>
-
-          {/* Kanan: form */}
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <Stack gap="md">
-              <TextInput key={form.key("name")} label="Name" placeholder="Your name" required {...form.getInputProps("name")} />
-
-              <TextInput key={form.key("email")} label="Email" placeholder="you@example.com" required type="email" {...form.getInputProps("email")} />
-
-              <Textarea
-                key={form.key("message")}
-                autosize
-                label="Message"
-                minRows={5}
-                placeholder="Tell me about the role, team, or project you would like to discuss."
-                required
-                {...form.getInputProps("message")}
-              />
-
-              <div>
-                <Button disabled={submitting} rightSection={<IconSend aria-hidden size={18} stroke={1.8} />} type="submit">
-                  {submitting ? "Sending..." : "Send message"}
-                </Button>
-              </div>
-            </Stack>
-          </form>
-        </SimpleGrid>
+              return (
+                <a
+                  className="group flex min-h-20 w-full items-center justify-between gap-4 rounded-card border border-border bg-surface px-5 py-4 text-text shadow-sm transition-[transform,background-color,border-color,box-shadow] duration-200 hover:-translate-y-1 hover:border-accent hover:bg-surface-accent hover:shadow-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-reduce:transform-none motion-reduce:transition-none sm:min-h-24 sm:px-6"
+                  href={link.href}
+                  key={link.label}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  target={link.external ? "_blank" : undefined}
+                >
+                  <span className="flex min-w-0 items-center gap-4">
+                    <Icon aria-hidden size={26} stroke={1.8} />
+                    <span className="text-lg font-bold tracking-[-0.025em] sm:text-xl">
+                      {link.label}
+                    </span>
+                  </span>
+                  <IconArrowUpRight
+                    aria-hidden
+                    className="shrink-0 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-none"
+                    size={22}
+                    stroke={1.8}
+                  />
+                </a>
+              );
+            })}
+          </nav>
+        </div>
       </Container>
     </section>
   );

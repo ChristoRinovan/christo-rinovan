@@ -2,6 +2,10 @@ export type ProjectCaseStudy = {
   challenge: string;
   solution: string;
   highlights: string[];
+  // Optional STAR-specific copy. Existing content is preserved until the
+  // owner supplies project-specific Task and verifiable Result text.
+  task?: string;
+  result?: string;
 };
 export type ProjectImage = {
   src: string; // contoh: "/images/projects/popo-laundry.png"

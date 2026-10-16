@@ -13,6 +13,7 @@ export function MobileMenu() {
     <>
       <Burger
         aria-label="Toggle navigation menu"
+        className="rounded-md p-1 transition-colors hover:bg-surface-accent focus-visible:outline-2 focus-visible:outline-accent motion-reduce:transition-none"
         hiddenFrom="sm"
         onClick={toggle}
         opened={opened}
@@ -21,21 +22,22 @@ export function MobileMenu() {
 
       <Drawer
         classNames={{
-          body: "mobile-drawer-body",
-          content: "mobile-drawer-content",
-          header: "mobile-drawer-header",
-          overlay: "mobile-drawer-overlay",
+          body: "bg-page text-text",
+          content: "bg-page text-text",
+          header: "border-b border-border bg-page text-text",
+          overlay: "bg-text/35",
         }}
         onClose={close}
         opened={opened}
         position="right"
         size="xs"
         title="Navigation"
+        transitionProps={{ duration: 260, timingFunction: "ease-out" }}
       >
         <Stack component="nav" gap="xs">
           {navigation.map((item) => (
             <Link
-              className="mobile-nav-link"
+              className="block w-full rounded-card-sm px-4 py-3 font-bold text-text outline-offset-2 transition-[background-color,color,transform] duration-200 ease-out hover:bg-surface-accent hover:text-accent motion-safe:hover:translate-x-1 focus-visible:outline-2 focus-visible:outline-accent motion-reduce:transition-none"
               href={item.href}
               key={item.href}
               onClick={close}
